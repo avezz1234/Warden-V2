@@ -1,10 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder, Partials } = require('discord.js');
-const { BOT_TOKEN } = require('./constants');
-
-const DM_FORWARD_CHANNEL_ID = '1406351476439126179';
-const COMMAND_LOG_CHANNEL_ID = '1406351476439126178';
+const { BOT_TOKEN, DM_FORWARD_CHANNEL_ID, COMMAND_LOG_CHANNEL_ID } = require('./constants');
 
 const dmForwardState = new Map();
 
