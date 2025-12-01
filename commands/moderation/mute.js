@@ -35,6 +35,15 @@ module.exports = {
       return;
     }
 
+    const callerPermissions = interaction.memberPermissions;
+    if (!callerPermissions?.has(PermissionFlagsBits.ModerateMembers)) {
+      await interaction.reply({
+        content: 'You do not have permission to use this command. (Moderate Members required.)',
+        ephemeral: true,
+      });
+      return;
+    }
+
     const member = await interaction.guild.members.fetch(targetUser.id).catch(() => null);
 
     if (!member) {

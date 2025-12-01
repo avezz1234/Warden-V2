@@ -27,6 +27,15 @@ module.exports = {
       return;
     }
 
+    const callerPermissions = interaction.memberPermissions;
+    if (!callerPermissions?.has(PermissionFlagsBits.BanMembers)) {
+      await interaction.reply({
+        content: 'You do not have permission to use this command. (Ban Members required.)',
+        ephemeral: true,
+      });
+      return;
+    }
+
     const member = await interaction.guild.members.fetch(targetUser.id).catch(() => null);
 
     if (!member) {

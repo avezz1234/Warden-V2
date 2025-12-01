@@ -23,6 +23,15 @@ module.exports = {
       return;
     }
 
+    const callerPermissions = interaction.memberPermissions;
+    if (!callerPermissions?.has(PermissionFlagsBits.ManageMessages)) {
+      await interaction.reply({
+        content: 'You do not have permission to use this command. (Manage Messages required.)',
+        ephemeral: true,
+      });
+      return;
+    }
+
     const guild = interaction.guild;
     const me = guild.members.me ?? (await guild.members.fetchMe().catch(() => null));
 
